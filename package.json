@@ -1,0 +1,11 @@
+{
+  "name": "time_tracker",
+  "version": "1.0.0",
+  "description": "Time tracker for tasks",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Dinesh Atoliya",
+  "license": "ISC"
+}
