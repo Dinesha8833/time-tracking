@@ -17,6 +17,8 @@
   "dependencies": {
     "config": "^1.26.1",
     "lodash": "^4.17.4",
+    "pg": "^6.4.0",
+    "pg-hstore": "^2.3.2",
     "sequelize": "^4.3.0",
     "winston": "^2.3.1"
   },
