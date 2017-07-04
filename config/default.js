@@ -3,6 +3,7 @@ module.exports = {
     name: 'time_tracker',
     description: 'Time tracker for tasks'
   },
+  port: process.env.PORT || 3000,
   loglevel: 'error',
   db: {
     name: 'time_tracker',
