@@ -18,5 +18,10 @@ module.exports = {
         idle: 10000
       }
     }
+  },
+  fb: {
+    clientID: "336550850115669",
+    clientSecret: "285c1ccb41ccbc6cdecf44bad22d8ec8",
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
   }
 };
