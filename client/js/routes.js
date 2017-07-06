@@ -14,6 +14,13 @@ app.config([
         url: '/',
         templateUrl:'/assets/views/login.html',
         controller: 'LoginController'
+      })
+      .state('auth_success', {
+        url: '/auth/success',
+        controller: 'AuthSuccessController'
+      })
+      .state('auth_failed', {
+        url: '/auth/failed',
       });
 
     $locationProvider.html5Mode({
