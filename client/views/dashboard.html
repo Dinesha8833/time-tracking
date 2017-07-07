@@ -1,0 +1,22 @@
+<div style="margin:auto 10px">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="task in tasks">
+          <td>{{task.title}}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.createdAt}}</td>
+          <td>{{task.time}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

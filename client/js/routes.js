@@ -21,6 +21,11 @@ app.config([
       })
       .state('auth_failed', {
         url: '/auth/failed',
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl:'/assets/views/dashboard.html',
+        controller: 'DashboardController'
       });
 
     $locationProvider.html5Mode({
