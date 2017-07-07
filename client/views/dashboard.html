@@ -1,5 +1,46 @@
 <div style="margin:auto 10px">
   <div class="container">
+    <form ng-submit="addTask()">
+      <label class="label label-info" for="task_title" style="font-size:85%">Task Title</label>
+      <span class="input-required">*</span>
+      <br/>
+      <div class="input-group">
+        <input type="text" id="task_title" name="task_title" class="form-control" placeholder="Add Task Title" ng-model="task_title" required></input>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </span>
+      </div>
+
+      <br/>
+      <label class="label label-info" for="task_description" style="font-size:85%">Task Description</label>
+      <span class="input-required">*</span>
+      <br/>
+      <div class="input-group">
+        <input type="text" id="task_description" name="task_description" class="form-control" placeholder="Add Task Description" ng-model="task_description" required></input>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-list-alt"></span>
+        </span>
+      </div>
+
+      <br/>
+      <label class="label label-info" for="time" style="font-size:85%">Time</label>
+      <span class="input-required">*</span>
+      <br/>
+      <div class="input-group">
+        <input type="text" id="time" name="time" class="form-control" placeholder="Time of work" ng-model="time" required></input>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-time"></span>
+        </span>
+      </div>
+
+      <br/>
+      <button type="submit" class="form-control btn btn-success">Add Task</button>
+    </form>
+    <div ng-show="invalid" class="alert alert-danger text-center">{{message}}</div>
+    <div ng-show="valid" class="alert alert-success text-center">{{message}}</div>
+
+    <br/>
+
     <table class="table">
       <thead>
         <tr>

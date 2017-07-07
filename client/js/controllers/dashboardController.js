@@ -33,5 +33,34 @@ app.controller('DashboardController', [
       });
     }
     $scope.getTasks();
+    $scope.addTask = function(params) {
+      $http({
+        method: 'POST',
+        url: '/tasks',
+        data: {
+          title: $scope.task_title,
+          description: $scope.task_description,
+          time: $scope.time
+        },
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+      .success((response, status) => {
+        $scope.valid = true;
+        $scope.invalid = false;
+        $scope.message = 'Task Added Successfully';
+        $scope.task_title = $scope.task_description = $scope.time = "";
+        $scope.getTasks();
+      })
+      .error((data, status) => {
+        if(status === 401)
+          $state.go('login');
+        $scope.valid = false;
+        $scope.invalid = true;
+        $scope.message = 'Invalid Task';
+        console.log(data);
+      });
+    }
   }
 ]);

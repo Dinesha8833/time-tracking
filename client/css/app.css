@@ -4,3 +4,7 @@ body {
   background-size: cover;
   margin: 30px;
 }
+
+.input-required {
+  color: red;
+}
