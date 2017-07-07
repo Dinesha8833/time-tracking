@@ -14,4 +14,34 @@ export default class TaskController {
       .then(tasks => Responder.success(res, { tasks }))
       .catch(errorOnDBOp => Responder.operationFailed(res, errorOnDBOp));
   }
+
+  static create(req, res) {
+    const requiredPresent = _.every(['title', 'description', 'time'], elem => _.has(req.body, elem))
+    if(!requiredPresent)
+      throw new BadRequestError(`title, description and time are required`);
+    if(!_.isString(req.body.title))
+      throw new BadRequestError(`title should be a string`);
+    if(!_.isString(req.body.description))
+      throw new BadRequestError(`description should be a string`);
+    TaskController._checkTime(req.body.time);
+    const task = _.extend({ userId: req.user.get('userId') }, _.pick(req.body, 'title', 'description', 'time'));
+    Task
+      .create(task)
+      .then(task => Responder.created(res, task))
+      .catch(errorOnDBOp => Responder.operationFailed(res, errorOnDBOp));
+  }
+
+  static _checkTime(time) {
+    if(!_.isString(time))
+      throw new BadRequestError(`time should be a string`);
+    let splits = time.split(":");
+    let hours = !splits[0] || parseInt(splits[0]);
+    let minutes = !splits[1] || parseInt(splits[1]);
+    if((!_.isNumber(hours) || _.isNaN(hours)) || (!_.isNumber(minutes) || _.isNaN(minutes)))
+      throw new BadRequestError(`time should be a valid HH:MM`);
+    if(hours < 0 && hours > 23)
+      throw new BadRequestError(`Hours should be between 0-23`);
+    if(minutes < 0 && minutes > 23)
+      throw new BadRequestError(`Minutes should be between 0-59`);
+  }
 }
