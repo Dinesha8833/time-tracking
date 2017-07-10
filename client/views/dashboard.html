@@ -34,7 +34,12 @@
       </div>
 
       <br/>
-      <button type="submit" class="form-control btn btn-success">Add Task</button>
+      <button ng-hide="updateMode" type="submit" class="form-control btn btn-success">Add Task</button>
+
+      <div ng-show="updateMode">
+        <button type="button" class="form-control btn btn-success" ng-click="editTask()" style="margin-bottom:10">Update Task</button>
+        <button type="button" class="form-control btn btn-danger" ng-click="cancelUpdateMode()">Cancel</button>
+      </div>
     </form>
     <div ng-show="invalid" class="alert alert-danger text-center">{{message}}</div>
     <div ng-show="valid" class="alert alert-success text-center">{{message}}</div>
@@ -48,6 +53,7 @@
           <th>Description</th>
           <th>Date</th>
           <th>Time</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -56,6 +62,7 @@
           <td>{{task.description}}</td>
           <td>{{task.createdAt}}</td>
           <td>{{task.time}}</td>
+          <td><span ng-show="task.createdAt === today" class="glyphicon glyphicon-pencil" ng-click="startUpdateMode(task)"></span></td>
         </tr>
       </tbody>
     </table>

@@ -62,5 +62,54 @@ app.controller('DashboardController', [
         console.log(data);
       });
     }
+    $scope.startUpdateMode = function(task) {
+      $scope.taskId = task.id;
+      $scope.task_title = task.title;
+      $scope.task_description = task.description;
+      $scope.time = task.time;
+      $scope.updateMode = true;
+      $scope.valid = false;
+      $scope.invalid = false;
+    }
+    $scope.editTask = function() {
+      $http({
+        method: 'PUT',
+        url: '/tasks/' + $scope.taskId,
+        data: {
+          title: $scope.task_title,
+          description: $scope.task_description,
+          time: $scope.time
+        },
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+      .success((response, status) => {
+        $scope.getTasks();
+        $scope.valid = true;
+        $scope.invalid = false;
+        $scope.cancelUpdateMode('Task Updated Successfully');
+      })
+      .error((data, status) => {
+        if(status === 401)
+          $state.go('login');
+        $scope.valid = false;
+        $scope.invalid = true;
+        $scope.message = 'Invalid Task';
+        console.log(data);
+      });
+    }
+    $scope.cancelUpdateMode = function(message) {
+      $scope.taskId = $scope.task_title = $scope.task_description = $scope.time = "";
+      $scope.updateMode = false;
+      if(message) {
+        $scope.message = message;
+      }
+      else {
+        $scope.message = "";
+        $scope.valid = false;
+        $scope.invalid = false;
+      }
+    }
   }
 ]);
