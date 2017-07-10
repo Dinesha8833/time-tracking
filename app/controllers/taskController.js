@@ -31,6 +31,28 @@ export default class TaskController {
       .catch(errorOnDBOp => Responder.operationFailed(res, errorOnDBOp));
   }
 
+  static update(req, res) {
+    const task = _.pick(req.body, 'title', 'description', 'time');
+    if(req.body.title && !_.isString(req.body.title))
+      throw new BadRequestError(`title should be a string`);
+    if(req.body.description && !_.isString(req.body.description))
+      throw new BadRequestError(`description should be a string`);
+    if(req.body.time) {
+      TaskController._checkTime(req.body.time);
+    }
+    Task
+      .find({ where: { id: req.params.taskId } })
+      .then(dbtask => {
+        if(dbtask.userId !== req.user.get('userId'))
+          throw new BadRequestError(`You are not allowed to access this resource.`);
+        if(new Date(dbtask.createdAt).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0))
+          throw new BadRequestError(`Only Today's can be updated`);
+        return Task.update(task, { where: { id: req.params.taskId } })
+      })
+      .then(task => Responder.success(res, task))
+      .catch(errorOnDBOp => Responder.operationFailed(res, errorOnDBOp));
+  }
+
   static _checkTime(time) {
     if(!_.isString(time))
       throw new BadRequestError(`time should be a string`);

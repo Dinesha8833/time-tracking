@@ -7,6 +7,7 @@ const initTaskRoutes = () => {
 
   taskRoutes.get('/', passport.authenticate('accessToken'), TaskController.page);
   taskRoutes.post('/', passport.authenticate('accessToken'), TaskController.create);
+  taskRoutes.put('/:taskId', passport.authenticate('accessToken'), TaskController.update);
 
   return taskRoutes;
 };
