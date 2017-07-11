@@ -111,5 +111,28 @@ app.controller('DashboardController', [
         $scope.invalid = false;
       }
     }
+    $scope.removeTask = function(taskId) {
+      $http({
+        method: 'DELETE',
+        url: '/tasks/' + taskId,
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+      .success((response, status) => {
+        $scope.message = "";
+        $scope.valid = false;
+        $scope.invalid = false;
+        $scope.getTasks();
+      })
+      .error((data, status) => {
+        if(status === 401)
+          $state.go('login');
+        $scope.valid = false;
+        $scope.invalid = true;
+        $scope.message = 'Problem Occured while removing the Task';
+        console.log(data);
+      });
+    }
   }
 ]);
