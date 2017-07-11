@@ -53,6 +53,20 @@ export default class TaskController {
       .catch(errorOnDBOp => Responder.operationFailed(res, errorOnDBOp));
   }
 
+  static remove(req, res) {
+    Task
+      .find({ where: { id: req.params.taskId } })
+      .then(task => {
+        if(task.userId !== req.user.get('userId'))
+          throw new BadRequestError(`You are not allowed to access this resource.`);
+        if(new Date(task.createdAt).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0))
+          throw new BadRequestError(`Only today's can be deleted`);
+        return Task.destroy({ where: { id: req.params.taskId } });
+      })
+      .then(task => Responder.deleted(res))
+      .catch(errorOnDBOp => Responder.operationFailed(res, errorOnDBOp));
+  }
+
   static _checkTime(time) {
     if(!_.isString(time))
       throw new BadRequestError(`time should be a string`);
