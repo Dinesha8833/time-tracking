@@ -6,11 +6,11 @@ module.exports = {
   port: process.env.PORT || 3000,
   loglevel: 'error',
   db: {
-    name: 'time_tracker',
-    user: 'postgres',
-    pass: 'pass',
+    name: 'dd6h4jsht580vj',
+    user: 'pfsyuiifhrnymq',
+    pass: '78a035474dd0241353c1e69b077eec8cedf95c10ace3168c5e3eeeaf3e3f1752',
     settings: {
-      host: 'localhost',
+      host: 'ec2-23-23-248-162.compute-1.amazonaws.com',
       port: 5432,
       dialect: 'postgres',
       pool: {
