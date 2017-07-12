@@ -58,7 +58,7 @@ app.controller('DashboardController', [
           $state.go('login');
         $scope.valid = false;
         $scope.invalid = true;
-        $scope.message = 'Invalid Task';
+        $scope.message = 'Invalid Task : ' + data.reason;
         console.log(data);
       });
     }
@@ -95,7 +95,7 @@ app.controller('DashboardController', [
           $state.go('login');
         $scope.valid = false;
         $scope.invalid = true;
-        $scope.message = 'Invalid Task';
+        $scope.message = 'Invalid Task : ' + data.reason;
         console.log(data);
       });
     }

@@ -12,10 +12,19 @@
     <!-- Javascript -->
     <script src="/assets/js/routes.js"></script>
     <script src="/assets/js/controllers/loginController.js"></script>
+    <script src="/assets/js/controllers/logoutController.js"></script>
     <script src="/assets/js/controllers/authSuccessController.js"></script>
     <script src="/assets/js/controllers/dashboardController.js"></script>
+    <script>
+    </script>
   </head>
   <body>
+    <header ng-show="loggedIn" ng-controller='LogoutController'>
+      <button class="rightfloat btn btn-primary" ng-click="logout()">
+        Logout <span class='glyphicon glyphicon-off'></span>
+      </button>
+      <br/><br/>
+    </header>
     <ui-view></ui-view>
   </body>
 </html>

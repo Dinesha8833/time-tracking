@@ -2,9 +2,29 @@ body {
   background-image: url('/assets/images/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 30px;
+  margin: 4%;
+  color: white;
+}
+
+.rightfloat {
+  float: right;
+  margin-right: 20px;
 }
 
 .input-required {
   color: red;
+}
+
+.loginhead {
+  margin-left: 44%;
+  margin-top: 20%;
+  color: white;
+}
+
+.label {
+  font-size:85%
+}
+
+.fbbtn {
+  margin-left: 41%;
 }

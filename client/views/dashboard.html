@@ -1,7 +1,7 @@
-<div style="margin:auto 10px">
-  <div class="container">
+<div>
+  <div class="dashboard container">
     <form ng-submit="addTask()">
-      <label class="label label-info" for="task_title" style="font-size:85%">Task Title</label>
+      <label class="label label-info" for="task_title">Task Title</label>
       <span class="input-required">*</span>
       <br/>
       <div class="input-group">
@@ -12,7 +12,7 @@
       </div>
 
       <br/>
-      <label class="label label-info" for="task_description" style="font-size:85%">Task Description</label>
+      <label class="label label-info" for="task_description">Task Description</label>
       <span class="input-required">*</span>
       <br/>
       <div class="input-group">
@@ -23,11 +23,11 @@
       </div>
 
       <br/>
-      <label class="label label-info" for="time" style="font-size:85%">Time</label>
+      <label class="label label-info" for="time">Time</label>
       <span class="input-required">*</span>
       <br/>
       <div class="input-group">
-        <input type="text" id="time" name="time" class="form-control" placeholder="Time of work" ng-model="time" required></input>
+        <input type="text" id="time" name="time" class="form-control" placeholder="Time of work {HH:MM}" ng-model="time" required></input>
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-time"></span>
         </span>
@@ -46,7 +46,7 @@
 
     <br/>
 
-    <table style="color:white" class="table">
+    <table class="table">
       <thead>
         <tr>
           <th>Task</th>
